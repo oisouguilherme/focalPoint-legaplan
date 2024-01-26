@@ -4,10 +4,15 @@ import styles from "./AddModal.module.css";
 
 export function AddModal({ togleModal, setTasks, tasks }: any) {
   const [newTaskTitle, setNewTaskTitle] = useState("");
-
+  const generateUniqueId = () => {
+    return "_" + Math.random().toString(36).substr(2, 9);
+  };
   const handleAddTask = () => {
     if (newTaskTitle.trim() !== "") {
-      setTasks([...tasks, { title: newTaskTitle, completed: false }]);
+      setTasks([
+        ...tasks,
+        { id: generateUniqueId(), title: newTaskTitle, completed: false },
+      ]);
       setNewTaskTitle("");
       togleModal(false);
     }

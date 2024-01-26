@@ -12,10 +12,15 @@ export function ListTarefa() {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedTaskIndex, setSelectedTaskIndex] = useState<any>(null);
 
-  const handleCompleteTask = (index: number) => {
-    const updatedTasks = [...tasks];
-    updatedTasks[index].completed = !updatedTasks[index].completed;
-    setTasks(updatedTasks);
+  const handleCompleteTask = (taskId: string) => {
+    setTasks((prevTasks: any) => {
+      return prevTasks.map((task: any) => {
+        if (task.id === taskId) {
+          return { ...task, completed: !task.completed };
+        }
+        return task;
+      });
+    });
   };
 
   const activeTasks = tasks.filter((task: any) => !task.completed);
@@ -29,12 +34,12 @@ export function ListTarefa() {
           <div>
             {activeTasks.length > 0 ? (
               activeTasks.map((task: any, index: any) => (
-                <div key={index} className={styles.item}>
+                <div key={task.id} className={styles.item}>
                   <label>
                     <input
                       type="checkbox"
                       checked={task.completed}
-                      onChange={() => handleCompleteTask(index)}
+                      onChange={() => handleCompleteTask(task.id)}
                     />
                     <span
                       style={{
@@ -48,9 +53,10 @@ export function ListTarefa() {
                   </label>
                   <div
                     onClick={() => {
-                      setSelectedTaskIndex(index);
+                      setSelectedTaskIndex(task.id);
                       setShowDeleteModal(true);
                     }}
+                    className={styles.icon}
                   >
                     <IconTrash />
                   </div>
@@ -69,12 +75,12 @@ export function ListTarefa() {
               completedTasks.map(
                 (task: any, index: any) =>
                   task.completed && (
-                    <div key={index} className={styles.item}>
+                    <div key={task.id} className={styles.item}>
                       <label>
                         <input
                           type="checkbox"
                           checked={task.completed}
-                          onChange={() => handleCompleteTask(index)}
+                          onChange={() => handleCompleteTask(task.id)}
                         />
                         <span style={{ textDecoration: "line-through" }}>
                           {task.title}
@@ -82,9 +88,10 @@ export function ListTarefa() {
                       </label>
                       <div
                         onClick={() => {
-                          setSelectedTaskIndex(index);
+                          setSelectedTaskIndex(task.id);
                           setShowDeleteModal(true);
                         }}
+                        className={styles.icon}
                       >
                         <IconTrash />
                       </div>

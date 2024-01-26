@@ -78,3 +78,11 @@
   font-size: small;
   color: darkgrey;
 }
+
+.icon {
+  color: #b0bbd1;
+  transition: color 0.3s ease-in;
+}
+.icon:hover {
+  color: red;
+}
