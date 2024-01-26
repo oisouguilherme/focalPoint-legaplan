@@ -14,17 +14,22 @@ export function AddModal({ togleModal, setTasks, tasks }: any) {
   };
 
   return (
-    <div className={styles.overlay} onClick={() => togleModal(false)}>
+    <div className={styles.overlay}>
       <div className={styles.modal}>
-        <h3>Adicionar Nova Tarefa</h3>
-        <input
-          type="text"
-          placeholder="Título da tarefa"
-          value={newTaskTitle}
-          onChange={(e) => setNewTaskTitle(e.target.value)}
-        />
-        <button onClick={handleAddTask}>Adicionar</button>
-        <button onClick={() => togleModal(false)}>Cancelar</button>
+        <h3>Nova tarefa</h3>
+        <label>
+          <span>Título</span>
+          <input
+            type="text"
+            placeholder="Digite"
+            value={newTaskTitle}
+            onChange={(e) => setNewTaskTitle(e.target.value)}
+          />
+        </label>
+        <div className={styles.buttons}>
+          <button onClick={() => togleModal(false)}>Cancelar</button>
+          <button onClick={handleAddTask}>Adicionar</button>
+        </div>
       </div>
     </div>
   );
