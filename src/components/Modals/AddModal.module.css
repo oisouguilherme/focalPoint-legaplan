@@ -47,6 +47,7 @@
   display: flex;
   justify-content: space-between;
   gap: 16px;
+  margin-top: 32px;
 }
 
 .buttons button {
@@ -83,4 +84,14 @@
     rgba(7, 150, 211, 0.9),
     rgba(83, 192, 240, 0.9)
   );
+}
+
+@media only screen and (max-width: 768px) {
+  .modal {
+    height: 100%;
+    max-width: 100%;
+  }
+  .buttons {
+    flex-direction: column-reverse;
+  }
 }
