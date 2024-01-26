@@ -3,6 +3,7 @@ import { IconTrash } from "@/assets/Icons";
 import styles from "./ListTarefa.module.css";
 import { useState } from "react";
 import { AddModal } from "../Modals/AddModal";
+import { ExcluirModal } from "../Modals/ExcluirModal";
 
 export function ListTarefa() {
   const [tasks, setTasks] = useState<any>([]);
@@ -15,14 +16,6 @@ export function ListTarefa() {
     const updatedTasks = [...tasks];
     updatedTasks[index].completed = !updatedTasks[index].completed;
     setTasks(updatedTasks);
-  };
-
-  const handleDeleteTask = () => {
-    const updatedTasks = [...tasks];
-    updatedTasks.splice(selectedTaskIndex, 1);
-    setTasks(updatedTasks);
-    setShowDeleteModal(false);
-    setSelectedTaskIndex(null);
   };
 
   const activeTasks = tasks.filter((task: any) => !task.completed);
@@ -77,14 +70,16 @@ export function ListTarefa() {
                 (task: any, index: any) =>
                   task.completed && (
                     <div key={index} className={styles.item}>
-                      <input
-                        type="checkbox"
-                        checked={task.completed}
-                        onChange={() => handleCompleteTask(index)}
-                      />
-                      <span style={{ textDecoration: "line-through" }}>
-                        {task.title}
-                      </span>
+                      <label>
+                        <input
+                          type="checkbox"
+                          checked={task.completed}
+                          onChange={() => handleCompleteTask(index)}
+                        />
+                        <span style={{ textDecoration: "line-through" }}>
+                          {task.title}
+                        </span>
+                      </label>
                       <div
                         onClick={() => {
                           setSelectedTaskIndex(index);
@@ -116,18 +111,13 @@ export function ListTarefa() {
       )}
 
       {showDeleteModal && (
-        <div className={styles.modal}>
-          <h3>Tem certeza que deseja fazer isso?</h3>
-          <button onClick={handleDeleteTask}>Sim</button>
-          <button
-            onClick={() => {
-              setShowDeleteModal(false);
-              setSelectedTaskIndex(null);
-            }}
-          >
-            Não
-          </button>
-        </div>
+        <ExcluirModal
+          togleModal={setShowDeleteModal}
+          setTasks={setTasks}
+          tasks={tasks}
+          selectedTaskIndex={selectedTaskIndex}
+          setSelectedTaskIndex={setSelectedTaskIndex}
+        />
       )}
     </div>
   );
