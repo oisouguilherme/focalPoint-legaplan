@@ -1,7 +1,7 @@
 "use client";
 import { IconTrash } from "@/assets/Icons";
 import styles from "./ListTarefa.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AddModal } from "../Modals/AddModal";
 import { ExcluirModal } from "../Modals/ExcluirModal";
 
@@ -25,6 +25,17 @@ export function ListTarefa() {
 
   const activeTasks = tasks.filter((task: any) => !task.completed);
   const completedTasks = tasks.filter((task: any) => task.completed);
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
+
+  useEffect(() => {
+    const storedTasks = localStorage.getItem("tasks");
+    if (storedTasks) {
+      setTasks(JSON.parse(storedTasks));
+    }
+  }, []);
 
   return (
     <div className={styles.container}>

@@ -12,7 +12,7 @@ export function IconTrash() {
         stroke="currentColor"
         stroke-width="1.33333"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
     </svg>
   );
