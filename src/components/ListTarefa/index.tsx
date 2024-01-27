@@ -27,15 +27,22 @@ export function ListTarefa() {
   const completedTasks = tasks.filter((task: any) => task.completed);
 
   useEffect(() => {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-  }, [tasks]);
-
-  useEffect(() => {
     const storedTasks = localStorage.getItem("tasks");
+    console.log(storedTasks + "OI");
     if (storedTasks) {
       setTasks(JSON.parse(storedTasks));
     }
+    console.log(tasks + "tasks");
   }, []);
+
+  useEffect(() => {
+    if (tasks.length > 0) {
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+    }
+    if (tasks.length === 0) {
+      localStorage.removeItem("tasks");
+    }
+  }, [tasks]);
 
   return (
     <div className={styles.container}>
@@ -68,6 +75,7 @@ export function ListTarefa() {
                       setShowDeleteModal(true);
                     }}
                     className={styles.icon}
+                    title="Deletar"
                   >
                     <IconTrash />
                   </div>
