@@ -1,13 +1,17 @@
 .main {
   max-width: 450px;
-  width: 80%;
+  width: 90%;
   margin: 40px auto;
   padding: 32px;
   padding-top: 8px;
   border: 1px solid #eaecf0;
   border-radius: 16px;
 }
-
+@media only screen and (max-width: 768px) {
+  .main {
+    padding: 24px;
+  }
+}
 .main h2 {
   text-align: center;
   color: rgba(0, 0, 0, 0.54);
@@ -42,6 +46,19 @@
   width: 24px;
   height: 24px;
   cursor: pointer;
+}
+
+.item input[type="checkbox"]:checked::before {
+  content: url("/check.svg");
+  display: block;
+  width: 24px;
+  height: 24px;
+  text-align: center;
+  line-height: 26px;
+  color: rgba(7, 150, 211, 1);
+  background-color: rgba(160, 220, 246, 1);
+  border: 1px solid rgba(7, 150, 211, 1);
+  border-radius: 3px;
 }
 
 .container {
