@@ -24,8 +24,8 @@ export function AddModal({ togleModal, setTasks, tasks }: any) {
   };
 
   return (
-    <div className={styles.overlay}>
-      <div className={styles.modal}>
+    <div className={styles.overlay} onClick={() => togleModal(false)}>
+      <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
         <h3>Nova tarefa</h3>
         <label>
           <span>Título</span>

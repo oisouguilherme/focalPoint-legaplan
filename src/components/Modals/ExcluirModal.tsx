@@ -18,8 +18,14 @@ export function ExcluirModal({
   };
 
   return (
-    <div className={styles.overlay}>
-      <div className={styles.modal}>
+    <div
+      className={styles.overlay}
+      onClick={() => {
+        togleModal(false);
+        setSelectedTaskIndex(null);
+      }}
+    >
+      <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
         <h3>Deletar tarefa</h3>
         <p>Tem certeza que você deseja deletar essa tarefa?</p>
         <div className={styles.buttons}>

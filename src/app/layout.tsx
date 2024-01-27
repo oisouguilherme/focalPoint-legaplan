@@ -18,8 +18,10 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon.svg" />
       </head>
-      <body>{children}</body>
-      <ToastContainer />
+      <body>
+        {children}
+        <ToastContainer />
+      </body>
     </html>
   );
 }
