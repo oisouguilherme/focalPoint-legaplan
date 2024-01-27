@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import styles from "./ExcluirModal.module.css";
 
 export function ExcluirModal({
@@ -13,6 +14,7 @@ export function ExcluirModal({
     setTasks(updatedTasks);
     togleModal(false);
     setSelectedTaskIndex(null);
+    toast.success("Deletado com sucesso");
   };
 
   return (

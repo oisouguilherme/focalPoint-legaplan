@@ -1,6 +1,8 @@
 "use client";
 import { useState } from "react";
 import styles from "./AddModal.module.css";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export function AddModal({ togleModal, setTasks, tasks }: any) {
   const [newTaskTitle, setNewTaskTitle] = useState("");
@@ -15,6 +17,9 @@ export function AddModal({ togleModal, setTasks, tasks }: any) {
       ]);
       setNewTaskTitle("");
       togleModal(false);
+      toast.success("Criado com sucesso");
+    } else {
+      toast.error("Digite pelo menos 1 caracter");
     }
   };
 

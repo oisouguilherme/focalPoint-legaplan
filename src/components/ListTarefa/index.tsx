@@ -28,11 +28,9 @@ export function ListTarefa() {
 
   useEffect(() => {
     const storedTasks = localStorage.getItem("tasks");
-    console.log(storedTasks + "OI");
     if (storedTasks) {
       setTasks(JSON.parse(storedTasks));
     }
-    console.log(tasks + "tasks");
   }, []);
 
   useEffect(() => {
